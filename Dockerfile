@@ -12,6 +12,7 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 #RUN a2enmod 
 COPY httpd-foreground /
+RUN chmod +x /httpd-foreground
 
 EXPOSE 80
 EXPOSE 443
