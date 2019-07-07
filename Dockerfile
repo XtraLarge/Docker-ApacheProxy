@@ -16,9 +16,6 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-# smoke test
-	httpd -v
-
 COPY httpd-foreground /usr/local/bin/
 
 EXPOSE 80
