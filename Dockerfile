@@ -11,12 +11,12 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 #RUN a2enmod 
-COPY httpd-foreground /
-RUN chmod +x /httpd-foreground
+COPY startup /
+RUN chmod +x /startup
 
 EXPOSE 80
 EXPOSE 443
-CMD ["/httpd-foreground"]
+CMD ["/startup"]
 
 #ENV DEBIAN_FRONTEND noninteractive
 
