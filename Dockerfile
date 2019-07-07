@@ -2,11 +2,6 @@ FROM debian:latest
 
 MAINTAINER Hans-Willi Werres
 
-# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-#RUN groupadd -r www-data && useradd -r --create-home -g www-data www-data
-
-# install httpd runtime dependencies
-# https://httpd.apache.org/docs/2.4/install.html#requirements
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
@@ -27,9 +22,15 @@ CMD ["httpd-foreground"]
 #RUN apt-get update && apt-get install -y apache2 libapache2-mod-wsgi libapache2-mod-dnssd
 
 #RUN curl -sL https://deb.nodesource.com/setup_6.x | bash
-
+RUN set -eux; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		locales \
+	; \
+	rm -rf /var/lib/apt/lists/*
 RUN sed -i -e 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen && \dpkg-reconfigure --frontend=noninteractive locales && \update-locale LANG=de_DE.UTF-8
 ENV LANG de_DE.UTF-8 
+
 RUN cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 ENV TZ Europe/Berlin
 
