@@ -10,12 +10,12 @@ RUN set -eux; \
 		libapache2-mod-dnssd \
 	; \
 	rm -rf /var/lib/apt/lists/*
-
-COPY httpd-foreground /usr/local/bin/
+#RUN a2enmod 
+COPY httpd-foreground /
 
 EXPOSE 80
 EXPOSE 443
-CMD ["httpd-foreground"]
+CMD ["/httpd-foreground"]
 
 #ENV DEBIAN_FRONTEND noninteractive
 
