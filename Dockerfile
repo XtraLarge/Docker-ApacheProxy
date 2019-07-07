@@ -10,42 +10,9 @@ RUN set -eux; \
 		libapache2-mod-dnssd \
 	; \
 	rm -rf /var/lib/apt/lists/*
-RUN a2enmod auth_digest.load 
-RUN a2enmod auth_form.load
-RUN a2enmod authz_groupfile.load
-RUN a2enmod cache_disk.conf
-RUN a2enmod cache_disk.load
-RUN a2enmod cache.load
-RUN a2enmod cache_socache.load
-RUN a2enmod cgid.conf
-RUN a2enmod cgid.load
-RUN a2enmod cgi.load
-RUN a2enmod headers.load
-RUN a2enmod info.conf
-RUN a2enmod info.load
-RUN a2enmod macro.load
-RUN a2enmod proxy_ajp.load
-RUN a2enmod proxy.conf
-RUN a2enmod proxy_connect.load
-RUN a2enmod proxy_fcgi.load
-RUN a2enmod proxy_html.conf
-RUN a2enmod proxy_html.load
-RUN a2enmod proxy_http2.load
-RUN a2enmod proxy_http.load
-RUN a2enmod proxy.load
-RUN a2enmod proxy_scgi.load
-RUN a2enmod proxy_wstunnel.load
-RUN a2enmod request.load
-RUN a2enmod rewrite.load
-RUN a2enmod sed.load
-RUN a2enmod session_cookie.load
-RUN a2enmod session_crypto.load
-RUN a2enmod session.load
-RUN a2enmod ssl.conf
-RUN a2enmod ssl.load
-RUN a2enmod substitute.load
-RUN a2enmod vhost_alias.load
-RUN a2enmod xml2enc.load
+RUN a2enmod auth_digest auth_form authz_groupfile cache_disk cache cache_socache cgid cgi headers info macro proxy_ajp \
+            proxy proxy_connect proxy_fcgi proxy_html proxy_http2 proxy_http proxy_scgi proxy_wstunnel request rewrite \
+	    sed session_cookie session_crypto session ssl substitute vhost_alias xml2enc
 
 COPY startup /
 RUN chmod +x /startup
